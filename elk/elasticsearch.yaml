@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: elasticsearch7
+  name: elasticsearch
   labels:
-    component: elasticsearch7
+    component: elasticsearch
 spec:
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      component: elasticsearch7
+      component: elasticsearch
   template:
     metadata:
       labels:
-        component: elasticsearch7
+        component: elasticsearch
     spec:
       containers:
-        - name: elasticsearch7
-          image: elasticsearch:7.17.9
+        - name: elasticsearch
+          image: elasticsearch:7.16.3
           ports:
             - containerPort: 9200
               name: client
@@ -40,9 +40,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: elasticsearch7
+  name: elasticsearch
   labels:
-    component: elasticsearch7
+    component: elasticsearch
 spec:
   ports:
   - port: 9200
@@ -50,4 +50,4 @@ spec:
   - port: 9300
     name: nodes
   selector:
-    component: elasticsearch7
+    component: elasticsearch
